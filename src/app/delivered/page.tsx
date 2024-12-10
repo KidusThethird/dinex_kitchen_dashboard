@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { formatDistanceToNow, format } from "date-fns";
+import { apiUrl } from "@/apiConfig";
 
 // Define types for the API response
 interface Item {
@@ -62,7 +63,7 @@ const Delivered: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get<Order[]>("http://localhost:5000/kitchen_info/delivered");
+        const response = await axios.get<Order[]>(`${apiUrl}/kitchen_info/delivered`);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);

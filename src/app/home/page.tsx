@@ -3,6 +3,7 @@
 import DeliverDialog from '@/components/custom_components/deliver_dialog';
 import React, { useEffect, useState } from 'react';
 import useStore from '../../lib/store';
+import { apiUrl } from '@/apiConfig';
 
 interface Item {
   id: number;
@@ -57,7 +58,7 @@ const KitchenDisplay: React.FC = () => {
   // Function to fetch orders from the server
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/kitchen_info/approved');
+      const response = await fetch(`${apiUrl}/kitchen_info/approved`);
       const data: Order[] = await response.json();
       setOrders(data);
     } catch (error) {
